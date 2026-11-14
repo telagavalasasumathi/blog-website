@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevSphere | Modern Tech, Web & Travel Blog</title>
+    <meta name="description" content="A modern, responsive blog platform featuring insights on Web Development, Technology Trends, and Travel Adventures. Created by Sumathi.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="light">
+
+    <!-- Top Reading Progress Indicator -->
+    <div id="scroll-progress" class="scroll-progress"></div>
+
+    <!-- Navigation Bar -->
+    <header class="navbar-wrapper">
+        <nav class="navbar" id="navbar">
+            <a href="#home" class="nav-brand">
+                <div class="brand-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                        <polyline points="2 17 12 22 22 17"></polyline>
+                        <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title">DevSphere</span>
+                    <span class="brand-badge">Blog</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#featured" class="nav-link">Featured</a></li>
+                <li><a href="#articles" class="nav-link">Articles</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+
+            <!-- Navbar Actions -->
+            <div class="nav-actions">
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" class="btn-icon" aria-label="Toggle dark/light theme" title="Toggle Theme">
+                    <svg id="theme-icon-sun" class="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg id="theme-icon-moon" class="theme-icon hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+
+                <!-- Bookmarked Posts Quick Filter -->
+                <button id="bookmarks-btn" class="btn-icon" aria-label="View bookmarked posts" title="Saved Posts">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    <span id="bookmark-badge" class="badge-count">0</span>
+                </button>
+
+                <!-- Write New Post Button -->
+                <button id="open-create-modal" class="btn btn-primary btn-sm">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    <span>Write Post</span>
+                </button>
+
+                <!-- Mobile Hamburger Toggle -->
+                <button id="mobile-menu-btn" class="btn-icon mobile-only" aria-label="Toggle navigation menu">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-drawer" class="mobile-drawer">
+            <ul class="mobile-nav-links">
+                <li><a href="#home" class="mobile-nav-link">Home</a></li>
+                <li><a href="#featured" class="mobile-nav-link">Featured</a></li>
+                <li><a href="#articles" class="mobile-nav-link">Articles</a></li>
+                <li><a href="#about" class="mobile-nav-link">About</a></li>
+                <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+            </ul>
+            <div class="mobile-drawer-footer">
+                <button id="mobile-create-btn" class="btn btn-primary btn-block">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    Write New Article
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section" id="home">
+            <div class="hero-bg-glow glow-1"></div>
+            <div class="hero-bg-glow glow-2"></div>
+            
+            <div class="container hero-container">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    <span>Inspiring Ideas • Tech Trends • Creative Journeys</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    Welcome to <span class="gradient-text">DevSphere</span> Blog
+                </h1>
+                
+                <p class="hero-subtitle">
+                    Sharing knowledge, real-world development experiences, practical coding guides, and travel adventures. Written and curated with care by <strong>Sumathi</strong>.
+                </p>
+
+                <!-- Interactive Hero Search -->
+                <div class="hero-search-wrapper">
+                    <div class="search-box">
+                        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="global-search" placeholder="Search by title, topic, or keyword (e.g. AI, CSS, Travel)..." autocomplete="off">
+                        <button id="clear-search" class="clear-search-btn hidden" title="Clear search">✕</button>
+                    </div>
+                </div>
+
+                <!-- Trending Topic Tags -->
+                <div class="trending-tags">
+                    <span class="trending-label">Trending Topics:</span>
+                    <button class="topic-tag" data-tag="Web Development">#WebDev</button>
+                    <button class="topic-tag" data-tag="Technology">#Technology</button>
+                    <button class="topic-tag" data-tag="Travel">#Travel</button>
+                    <button class="topic-tag" data-tag="Lifestyle & Career">#Career</button>
+                </div>
+
+                <!-- Quick Stats Strip -->
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="total-articles-count">6+</span>
+                        <span class="stat-label">In-depth Articles</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">Core Categories</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Free & Interactive</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Article Spotlight Section -->
+        <section class="featured-section" id="featured">
+            <div class="container">
+                <div class="section-header-compact">
+                    <span class="section-tag">Editor's Pick</span>
+                    <h2>Featured Article</h2>
+                </div>
+                
+                <div class="featured-card" id="featured-article-card">
+                    <!-- Populated dynamically by script.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- All Articles Section with Filtering & Sorting -->
+        <section class="articles-section" id="articles">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <span class="section-tag">Explore Stories</span>
+                        <h2 class="section-title">Latest Blog Posts</h2>
+                        <p class="section-subtitle">Browse through our articles, filter by your favorite topics, or search for specifics.</p>
+                    </div>
+
+                    <!-- Toolbar / Controls -->
+                    <div class="articles-controls">
+                        <!-- View Toggle: All vs Saved -->
+                        <div class="view-toggle-group">
+                            <button class="view-btn active" id="view-all-btn">
+                                All Posts
+                            </button>
+                            <button class="view-btn" id="view-saved-btn">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                                </svg>
+                                Saved (<span id="saved-counter">0</span>)
+                            </button>
+                        </div>
+
+                        <!-- Sort Dropdown -->
+                        <div class="sort-wrapper">
+                            <label for="sort-select" class="sort-label">Sort by:</label>
+                            <select id="sort-select" class="sort-select">
+                                <option value="latest">Newest First</option>
+                                <option value="oldest">Oldest First</option>
+                                <option value="popular">Most Popular (Likes)</option>
+                                <option value="readtime">Quickest Reads</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category Filters -->
+                <div class="category-filters-container">
+                    <div class="category-filters" id="category-filters">
+                        <button class="cat-pill active" data-category="all">
+                            <span>All</span>
+                            <span class="cat-count" id="count-all">0</span>
+                        </button>
+                        <button class="cat-pill" data-category="Technology">
+                            <span>Technology</span>
+                            <span class="cat-count" id="count-tech">0</span>
+                        </button>
+                        <button class="cat-pill" data-category="Web Development">
+                            <span>Web Development</span>
+                            <span class="cat-count" id="count-web">0</span>
+                        </button>
+                        <button class="cat-pill" data-category="Travel">
+                            <span>Travel</span>
+                            <span class="cat-count" id="count-travel">0</span>
+                        </button>
+                        <button class="cat-pill" data-category="Lifestyle & Career">
+                            <span>Lifestyle & Career</span>
+                            <span class="cat-count" id="count-lifestyle">0</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Active Filter Status Bar -->
+                <div id="filter-status-bar" class="filter-status-bar hidden">
+                    <span id="filter-status-text">Showing filtered articles</span>
+                    <button id="reset-filter-btn" class="btn-text">Clear Filters ✕</button>
+                </div>
+
+                <!-- Blog Cards Grid -->
+                <div class="blog-grid" id="blog-grid">
+                    <!-- Populated dynamically by script.js -->
+                </div>
+
+                <!-- Empty State (No posts match filter) -->
+                <div class="empty-state hidden" id="empty-state">
+                    <div class="empty-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            <line x1="8" y1="11" x2="14" y2="11"></line>
+                        </svg>
+                    </div>
+                    <h3>No articles found</h3>
+                    <p>We couldn't find any articles matching your current search or category filter.</p>
+                    <button id="empty-reset-btn" class="btn btn-outline">Reset Search & Filters</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Author & Project Section -->
+        <section class="about-section" id="about">
+            <div class="container">
+                <div class="about-grid">
+                    <!-- Author Profile Card -->
+                    <div class="author-card">
+                        <div class="author-avatar-wrapper">
+                            <div class="author-avatar">
+                                <span>S</span>
+                            </div>
+                            <span class="status-indicator" title="Open to Tech Opportunities"></span>
+                        </div>
+                        <h3 class="author-name">Sumathi</h3>
+                        <p class="author-title">Frontend Developer & Tech Explorer</p>
+                        
+                        <div class="author-badges">
+                            <span class="pill-badge">🎓 Internship Project</span>
+                            <span class="pill-badge">🚀 Continuous Learner</span>
+                        </div>
+
+                        <p class="author-bio-snippet">
+                            Passionate about transforming creative designs into responsive, high-performance web applications using modern web standards.
+                        </p>
+
+                        <div class="author-socials">
+                            <a href="#contact" class="social-icon-btn" title="Contact Email">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </a>
+                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" title="GitHub">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                </svg>
+                            </a>
+                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" title="LinkedIn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                    <rect x="2" y="9" width="4" height="12"></rect>
+                                    <circle cx="4" cy="4" r="2"></circle>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Story & Mission Details -->
+                    <div class="about-details">
+                        <span class="section-tag">About The Project</span>
+                        <h2 class="section-title">Empowering Growth Through Code & Community</h2>
+                        <p class="about-description">
+                            Welcome to <strong>DevSphere</strong>, a personal blog platform born out of an internship learning journey. What started as an exploration of HTML, CSS, and JavaScript has evolved into a full-featured, responsive, interactive blogging space.
+                        </p>
+                        <p class="about-description">
+                            The goal of this blog is twofold: to document hands-on solutions to real-world development challenges and to inspire fellow developers and learners to build with confidence.
+                        </p>
+
+                        <!-- Highlights Grid -->
+                        <div class="about-features-grid">
+                            <div class="about-feature">
+                                <div class="feature-icon">⚡</div>
+                                <div>
+                                    <h4>Fast & Lightweight</h4>
+                                    <p>Zero external heavy dependencies, built with pure vanilla web technologies.</p>
+                                </div>
+                            </div>
+                            <div class="about-feature">
+                                <div class="feature-icon">📱</div>
+                                <div>
+                                    <h4>Fully Responsive</h4>
+                                    <p>Seamlessly scales from ultra-wide desktops down to mobile devices.</p>
+                                </div>
+                            </div>
+                            <div class="about-feature">
+                                <div class="feature-icon">💾</div>
+                                <div>
+                                    <h4>Instant Persistence</h4>
+                                    <p>Write new articles, like posts, and leave comments with live local storage.</p>
+                                </div>
+                            </div>
+                            <div class="about-feature">
+                                <div class="feature-icon">🌓</div>
+                                <div>
+                                    <h4>Theme Aware</h4>
+                                    <p>Thoughtfully crafted dark and light modes with smooth transitions.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Skills Pills -->
+                        <div class="tech-stack-wrapper">
+                            <h4>Built With:</h4>
+                            <div class="tech-pills">
+                                <span class="tech-pill">HTML5 Semantic</span>
+                                <span class="tech-pill">CSS3 Flexbox & Grid</span>
+                                <span class="tech-pill">Vanilla JavaScript (ES6+)</span>
+                                <span class="tech-pill">LocalStorage CRUD</span>
+                                <span class="tech-pill">Responsive Design</span>
+                                <span class="tech-pill">Web Accessibility (a11y)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Subscription Box -->
+        <section class="newsletter-section">
+            <div class="container">
+                <div class="newsletter-card">
+                    <div class="newsletter-content">
+                        <span class="newsletter-badge">Weekly Digest</span>
+                        <h3>Stay in the Loop with DevSphere</h3>
+                        <p>Get the latest web development tutorials, design tips, and tech insights delivered right to your inbox. No spam, ever.</p>
+                    </div>
+                    <form id="newsletter-form" class="newsletter-form">
+                        <div class="newsletter-input-group">
+                            <input type="email" id="newsletter-email" placeholder="Enter your email address..." required>
+                            <button type="submit" class="btn btn-primary">Subscribe</button>
+                        </div>
+                        <span class="newsletter-note">🔒 We respect your privacy. Unsubscribe anytime.</span>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section" id="contact">
+            <div class="container">
+                <div class="contact-grid">
+                    <!-- Contact Details Info -->
+                    <div class="contact-info-card">
+                        <span class="section-tag">Get In Touch</span>
+                        <h2 class="section-title">Let's Connect & Talk Code</h2>
+                        <p class="contact-intro">
+                            Have questions about one of the articles, ideas for collaboration, or feedback on this blog project? Feel free to send a message!
+                        </p>
+
+                        <div class="contact-methods">
+                            <div class="contact-method-item">
+                                <div class="method-icon">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                        <polyline points="22,6 12,13 2,6"></polyline>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h5>Email Directly</h5>
+                                    <a href="mailto:sumathi.dev@example.com">sumathi.dev@example.com</a>
+                                </div>
+                            </div>
+
+                            <div class="contact-method-item">
+                                <div class="method-icon">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h5>Location</h5>
+                                    <p>Bangalore, India (Remote Available)</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-method-item">
+                                <div class="method-icon">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h5>Response Time</h5>
+                                    <p>Typically replies within 24 hours</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form Card -->
+                    <div class="contact-form-card">
+                        <form id="contact-form" class="contact-form">
+                            <h3 class="form-title">Send a Message</h3>
+                            
+                            <div class="form-group">
+                                <label for="contact-name">Your Full Name <span class="required">*</span></label>
+                                <input type="text" id="contact-name" placeholder="e.g. Alex Morgan" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact-email">Your Email Address <span class="required">*</span></label>
+                                <input type="email" id="contact-email" placeholder="e.g. alex@example.com" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact-subject">Topic / Subject</label>
+                                <select id="contact-subject" class="form-select">
+                                    <option value="General Feedback">General Feedback</option>
+                                    <option value="Article Discussion">Discussion on an Article</option>
+                                    <option value="Project Collaboration">Project Collaboration</option>
+                                    <option value="Internship / Opportunity">Opportunity / Greeting</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact-message">Your Message <span class="required">*</span></label>
+                                <textarea id="contact-message" rows="4" placeholder="Write your message or inquiry here..." required></textarea>
+                            </div>
+
+                            <button type="submit" id="contact-submit-btn" class="btn btn-primary btn-block">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                                <span>Send Message</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="brand-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                                <polyline points="2 17 12 22 22 17"></polyline>
+                                <polyline points="2 12 12 17 22 12"></polyline>
+                            </svg>
+                        </div>
+                        <span class="brand-title">DevSphere</span>
+                    </div>
+                    <p class="footer-desc">
+                        A modern, interactive blog platform sharing authentic insights on frontend engineering, emerging technology, and travel experiences.
+                    </p>
+                </div>
+
+                <div class="footer-links-col">
+                    <h5 class="footer-col-title">Navigation</h5>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#featured">Featured Story</a></li>
+                        <li><a href="#articles">All Articles</a></li>
+                        <li><a href="#about">About the Creator</a></li>
+                        <li><a href="#contact">Contact Me</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links-col">
+                    <h5 class="footer-col-title">Categories</h5>
+                    <ul>
+                        <li><a href="#articles" class="footer-cat-link" data-cat="Technology">Technology</a></li>
+                        <li><a href="#articles" class="footer-cat-link" data-cat="Web Development">Web Development</a></li>
+                        <li><a href="#articles" class="footer-cat-link" data-cat="Travel">Travel Adventures</a></li>
+                        <li><a href="#articles" class="footer-cat-link" data-cat="Lifestyle & Career">Lifestyle & Career</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links-col">
+                    <h5 class="footer-col-title">Creator Info</h5>
+                    <p class="footer-text-sm">Built by <strong>Sumathi</strong> as a capstone project during the web development learning internship.</p>
+                    <div class="footer-social-strip">
+                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-social-link" title="GitHub">GH</a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-social-link" title="LinkedIn">IN</a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="footer-social-link" title="X / Twitter">X</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 <strong>DevSphere Blog</strong>. All rights reserved. Created with ❤️ by Sumathi.</p>
+                <div class="footer-bottom-links">
+                    <a href="#home">Back to Top ↑</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Full Article Reading Modal -->
+    <div id="reader-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-article-title">
+        <div class="modal-reader-container">
+            <!-- Modal Top Bar -->
+            <div class="reader-top-bar">
+                <button id="close-reader-btn" class="btn-text reader-back-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    <span>Back to Articles</span>
+                </button>
+
+                <div class="reader-meta-compact">
+                    <span id="modal-category-badge" class="badge">Category</span>
+                    <span id="modal-read-time" class="read-time-pill">5 min read</span>
+                </div>
+
+                <button id="close-reader-x" class="btn-icon" aria-label="Close reader">
+                    ✕
+                </button>
+            </div>
+
+            <!-- Article Reader Content Scrollable Area -->
+            <div class="reader-scroll-body">
+                <!-- Cover Image -->
+                <div class="reader-cover-wrapper">
+                    <img id="modal-cover-img" src="blog1.jpg" alt="Cover Image" class="reader-cover-img">
+                </div>
+
+                <!-- Article Header -->
+                <header class="reader-header">
+                    <h1 id="modal-article-title" class="reader-title">Article Title</h1>
+                    <div class="reader-author-row">
+                        <div class="reader-author-info">
+                            <div class="author-avatar-sm" id="modal-author-avatar">S</div>
+                            <div>
+                                <span class="reader-author-name" id="modal-author-name">Sumathi</span>
+                                <span class="reader-published-date" id="modal-published-date">Nov 12, 2026</span>
+                            </div>
+                        </div>
+
+                        <!-- Reader Action Bar -->
+                        <div class="reader-actions">
+                            <button id="modal-like-btn" class="btn-action like-btn" title="Like this article">
+                                <svg class="heart-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                </svg>
+                                <span id="modal-like-count">0</span>
+                            </button>
+
+                            <button id="modal-bookmark-btn" class="btn-action bookmark-btn" title="Bookmark article">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                                </svg>
+                            </button>
+
+                            <button id="modal-copy-link-btn" class="btn-action" title="Copy article link">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Article Body -->
+                <article id="modal-article-body" class="reader-body">
+                    <!-- Populated dynamically -->
+                </article>
+
+                <!-- Article Author Card Footer -->
+                <div class="reader-author-box">
+                    <div class="author-avatar-lg">S</div>
+                    <div class="author-box-content">
+                        <h4>Written by Sumathi</h4>
+                        <p>Frontend enthusiast, lifelong learner, and writer exploring the intersection of design, code, and everyday adventures.</p>
+                    </div>
+                </div>
+
+                <!-- Discussion & Comments Section -->
+                <section class="reader-comments-section">
+                    <div class="comments-header">
+                        <h3>Discussion (<span id="modal-comments-count">0</span>)</h3>
+                    </div>
+
+                    <!-- New Comment Form -->
+                    <form id="new-comment-form" class="new-comment-form">
+                        <div class="form-row">
+                            <input type="text" id="comment-author-input" placeholder="Your name (e.g. Priya)" required>
+                        </div>
+                        <div class="form-row">
+                            <textarea id="comment-text-input" rows="3" placeholder="Share your thoughts, feedback or questions..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-sm">Post Comment</button>
+                    </form>
+
+                    <!-- Comments List -->
+                    <div id="modal-comments-list" class="comments-list">
+                        <!-- Populated dynamically -->
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create New Blog Post Modal -->
+    <div id="create-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="create-modal-title">
+        <div class="modal-form-container">
+            <div class="modal-form-header">
+                <div class="form-header-title">
+                    <div class="brand-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 20h9"></path>
+                            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                        </svg>
+                    </div>
+                    <h2 id="create-modal-title">Write New Blog Article</h2>
+                </div>
+                <button id="close-create-modal" class="btn-icon" aria-label="Close modal">✕</button>
+            </div>
+
+            <form id="create-post-form" class="create-post-form">
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label for="post-title-input">Article Title <span class="required">*</span></label>
+                        <input type="text" id="post-title-input" placeholder="e.g. Mastering Modern Frontend in 2026" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="post-author-input">Author Name <span class="required">*</span></label>
+                        <input type="text" id="post-author-input" value="Sumathi" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="post-category-select">Category <span class="required">*</span></label>
+                        <select id="post-category-select" class="form-select" required>
+                            <option value="Technology">Technology</option>
+                            <option value="Web Development" selected>Web Development</option>
+                            <option value="Travel">Travel</option>
+                            <option value="Lifestyle & Career">Lifestyle & Career</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Cover Image Source</label>
+                        <div class="image-source-options">
+                            <label class="radio-label">
+                                <input type="radio" name="image-source-type" value="preset" checked> Choose Preset Image
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="image-source-type" value="url"> Custom Image URL
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="image-source-type" value="file"> Upload File
+                            </label>
+                        </div>
+
+                        <!-- Preset Images Strip -->
+                        <div id="image-preset-picker" class="image-preset-picker">
+                            <label class="preset-option active">
+                                <input type="radio" name="preset-img" value="blog1.jpg" checked>
+                                <img src="blog1.jpg" alt="Preset 1 - Travel">
+                                <span>Travel</span>
+                            </label>
+                            <label class="preset-option">
+                                <input type="radio" name="preset-img" value="blog2.jpg">
+                                <img src="blog2.jpg" alt="Preset 2 - Tech">
+                                <span>Tech</span>
+                            </label>
+                            <label class="preset-option">
+                                <input type="radio" name="preset-img" value="blog3.jpg">
+                                <img src="blog3.jpg" alt="Preset 3 - Code">
+                                <span>Code</span>
+                            </label>
+                        </div>
+
+                        <!-- URL Input -->
+                        <div id="image-url-group" class="image-url-group hidden">
+                            <input type="url" id="post-image-url" placeholder="https://images.unsplash.com/photo-...">
+                        </div>
+
+                        <!-- File Input -->
+                        <div id="image-file-group" class="image-file-group hidden">
+                            <input type="file" id="post-image-file" accept="image/*">
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="post-excerpt-input">Short Excerpt / Summary <span class="required">*</span></label>
+                        <input type="text" id="post-excerpt-input" placeholder="A brief 1-2 sentence hook for the article card..." required>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <div class="label-with-tip">
+                            <label for="post-content-input">Full Article Content <span class="required">*</span></label>
+                            <span class="field-hint">Supports headings (###), quotes (>), and bullet points (-)</span>
+                        </div>
+                        <textarea id="post-content-input" rows="8" placeholder="Write the complete story here. You can separate paragraphs with empty lines, use ### for subheadings, > for callout quotes, or - for lists..." required></textarea>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" id="cancel-create-btn" class="btn btn-outline">Cancel</button>
+                    <button type="submit" class="btn btn-primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                        <span>Publish Article</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- Floating Back to Top Button -->
+    <button id="back-to-top" class="back-to-top hidden" aria-label="Back to top" title="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <!-- JavaScript File -->
+    <script src="script.js"></script>
+</body>
+</html>
